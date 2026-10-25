@@ -5,17 +5,14 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
+ * Casa Tres Hijos design system.
  *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
+ * Palette (from client brief):
+ *   Rich Gold #C99A32 · Deep Charcoal #191919 · Pool Turquoise #159DB1
+ *   Warm Cream #F8F4EC · Natural Wood Brown #815336 · Soft White #FFFFFF
  *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Serif display headings (Cormorant Garamond), modern sans UI (Outfit).
+ * All colors use oklch. Never hardcode colors in components — add tokens here.
  */
 
 @theme inline {
@@ -45,91 +42,66 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-gold-soft: var(--gold-soft);
+  --color-turquoise: var(--turquoise);
+  --color-turquoise-deep: var(--turquoise-deep);
+  --color-turquoise-soft: var(--turquoise-soft);
+  --color-wood: var(--wood);
+  --color-charcoal: var(--charcoal);
+  --color-cream: var(--cream);
+  --font-display: "Cormorant Garamond", "Georgia", serif;
+  --font-sans: "Outfit", "Segoe UI", sans-serif;
+  --shadow-luxe: var(--shadow-luxe);
+  --shadow-card: var(--shadow-card);
+  --animate-fade-up: fade-up 0.7s ease-out both;
+  --animate-fade-in: fade-in 0.9s ease-out both;
+  --animate-shimmer: shimmer 2.4s linear infinite;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --radius: 0.75rem;
+  --background: oklch(0.965 0.014 90);            /* Warm Cream #F8F4EC */
+  --foreground: oklch(0.21 0.012 70);             /* near Deep Charcoal */
+  --card: oklch(1 0 0);                           /* Soft White */
+  --card-foreground: oklch(0.21 0.012 70);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --popover-foreground: oklch(0.21 0.012 70);
+  --primary: oklch(0.67 0.118 82);                /* Rich Gold #C99A32 */
+  --primary-foreground: oklch(0.19 0.01 70);      /* Deep Charcoal on gold */
+  --secondary: oklch(0.92 0.03 85);               /* soft gold cream */
+  --secondary-foreground: oklch(0.25 0.012 70);
+  --muted: oklch(0.925 0.018 85);
+  --muted-foreground: oklch(0.47 0.03 70);
+  --accent: oklch(0.9 0.05 210);                  /* soft turquoise wash */
+  --accent-foreground: oklch(0.25 0.03 210);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.885 0.022 85);
+  --input: oklch(0.885 0.022 85);
+  --ring: oklch(0.67 0.118 82);
+  /* Brand tokens */
+  --gold: oklch(0.67 0.118 82);
+  --gold-deep: oklch(0.55 0.115 78);
+  --gold-soft: oklch(0.86 0.07 86);
+  --turquoise: oklch(0.62 0.098 215);             /* Pool Turquoise #159DB1 */
+  --turquoise-deep: oklch(0.48 0.09 218);
+  --turquoise-soft: oklch(0.88 0.06 210);
+  --wood: oklch(0.47 0.082 55);                   /* Natural Wood Brown #815336 */
+  --charcoal: oklch(0.19 0.01 70);                /* Deep Charcoal #191919 */
+  --cream: oklch(0.965 0.014 90);
+  /* Effects */
+  --shadow-luxe: 0 18px 45px -18px oklch(0.19 0.01 70 / 0.35);
+  --shadow-card: 0 10px 30px -12px oklch(0.19 0.01 70 / 0.18);
+  --gradient-gold: linear-gradient(135deg, oklch(0.72 0.12 86), oklch(0.6 0.115 76));
+  --gradient-hero: linear-gradient(180deg, oklch(0.19 0.01 70 / 0.55), oklch(0.19 0.01 70 / 0.25) 45%, oklch(0.19 0.01 70 / 0.75));
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  /* The site ships a single luxurious light theme; dark values kept minimal */
+  --background: oklch(0.19 0.01 70);
+  --foreground: oklch(0.965 0.014 90);
 }
 
 @layer base {
@@ -137,8 +109,57 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+
+  ::selection {
+    background: var(--color-gold-soft);
+    color: var(--color-charcoal);
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+@utility gold-text {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility hero-overlay {
+  background: var(--gradient-hero);
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
 }

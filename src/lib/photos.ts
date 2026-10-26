@@ -1,81 +1,139 @@
-// Central registry of the real Casa Tres Hijos photos + logo (CDN asset pointers).
-// Never replace these with stock or AI-generated images.
-import cthLogo from "@/assets/cth-logo.png.asset.json";
-import poolWideDay from "@/assets/pool-wide-day.jpg.asset.json";
-import poolSignage from "@/assets/pool-signage.jpg.asset.json";
-import diningLiving from "@/assets/dining-living.jpg.asset.json";
-import aframeInterior from "@/assets/aframe-interior.jpg.asset.json";
-import loftLiving from "@/assets/loft-living.jpg.asset.json";
-import swingsBarEvening from "@/assets/swings-bar-evening.jpg.asset.json";
-import outdoorKitchenEvening from "@/assets/outdoor-kitchen-evening.jpg.asset.json";
+// Real Casa Tres Hijos photographs supplied by the resort.
+// Do not replace these with stock or generated images.
+
+export type PhotoCategory = "pool" | "interior" | "outdoor" | "evening";
 
 export type Photo = {
   id: string;
   src: string;
   alt: string;
-  category: "pool" | "interior" | "outdoor" | "evening";
+  category: PhotoCategory;
   caption: string;
 };
 
-export const logo = cthLogo.url;
+export const logo = "/resort/logo-gold.png";
 
 export const photos: Photo[] = [
   {
-    id: "pool-wide-day",
-    src: poolWideDay.url,
-    alt: "The turquoise private pool at Casa Tres Hijos with covered swings and the A-frame villa",
+    id: "pool-day",
+    src: "/resort/pool-day.jpg",
+    alt: "Turquoise swimming pool at Casa Tres Hijos with swings and the A-frame villa",
     category: "pool",
     caption: "The turquoise pool",
   },
   {
-    id: "pool-signage",
-    src: poolSignage.url,
-    alt: "Casa Tres Hijos gold signage above the pool with a hanging egg chair",
+    id: "pool-from-villa",
+    src: "/resort/pool-from-villa.jpg",
+    alt: "Pool and gold Casa Tres Hijos sign seen from the villa",
     category: "pool",
-    caption: "Welcome to Casa Tres Hijos",
+    caption: "Pool from the villa",
   },
   {
-    id: "dining-living",
-    src: diningLiving.url,
-    alt: "Dining and living area with marble table, gold accents and garden view",
+    id: "egg-chair",
+    src: "/resort/egg-chair.jpg",
+    alt: "Hanging egg chair on artificial grass beside the Casa Tres Hijos sign",
+    category: "outdoor",
+    caption: "Egg chair by the sign",
+  },
+  {
+    id: "gold-sign",
+    src: "/resort/gold-sign.jpg",
+    alt: "Gold Casa Tres Hijos sign on the wall",
+    category: "outdoor",
+    caption: "The gold sign",
+  },
+  {
+    id: "aframe-pool-view",
+    src: "/resort/aframe-pool-view.jpg",
+    alt: "A-frame living room looking through glass doors to the pool",
     category: "interior",
-    caption: "Dining & living area",
+    caption: "A-frame, open to the pool",
   },
   {
-    id: "aframe-interior",
-    src: aframeInterior.url,
-    alt: "Inside the A-frame villa looking out to the pool through tall glass doors",
+    id: "dining-overhead",
+    src: "/resort/dining-overhead.jpg",
+    alt: "Marble dining table for six and grey sofa beside tan curtains",
     category: "interior",
-    caption: "The A-frame villa",
+    caption: "Dining and lounge",
   },
   {
-    id: "loft-living",
-    src: loftLiving.url,
-    alt: "Cozy lounge with sofa, loft stairs and smart TV",
+    id: "lounge",
+    src: "/resort/lounge.jpg",
+    alt: "Grey sofa, marble coffee table, and stairs to the loft",
     category: "interior",
-    caption: "Cozy lounge & loft",
+    caption: "The lounge",
   },
   {
-    id: "swings-bar-evening",
-    src: swingsBarEvening.url,
-    alt: "Warmly lit bar seating and wooden swings beside the pool in the evening",
+    id: "loft-stairs",
+    src: "/resort/loft-stairs.jpg",
+    alt: "Gold and white staircase up to the loft, with the dining table in front",
+    category: "interior",
+    caption: "Stairs to the loft",
+  },
+  {
+    id: "bedroom-trundle",
+    src: "/resort/bedroom-trundle.jpg",
+    alt: "Bedroom with a bed, trundle, air conditioner, and open shelving",
+    category: "interior",
+    caption: "Bedroom with trundle",
+  },
+  {
+    id: "bedroom-pair",
+    src: "/resort/bedroom-pair.jpg",
+    alt: "Two beds in an air-conditioned room under the A-frame ceiling",
+    category: "interior",
+    caption: "Twin sleeping room",
+  },
+  {
+    id: "bedroom-single",
+    src: "/resort/bedroom-single.jpg",
+    alt: "Air-conditioned bedroom with a pink-sheeted bed and a small shelf",
+    category: "interior",
+    caption: "Air-conditioned bedroom",
+  },
+  {
+    id: "bathroom",
+    src: "/resort/bathroom.jpg",
+    alt: "Bathroom with rain shower, toilet, and a dark marble sink",
+    category: "interior",
+    caption: "Bathroom",
+  },
+  {
+    id: "indoor-kitchen",
+    src: "/resort/indoor-kitchen.jpg",
+    alt: "Indoor kitchen with sink, microwave, rice cooker, and kettle",
+    category: "interior",
+    caption: "Indoor kitchen",
+  },
+  {
+    id: "swings-evening",
+    src: "/resort/swings-evening.jpg",
+    alt: "Wooden swings and cane chairs beside the pool in the evening",
     category: "evening",
-    caption: "Evening by the swings",
+    caption: "Swings in the evening",
   },
   {
-    id: "outdoor-kitchen-evening",
-    src: outdoorKitchenEvening.url,
-    alt: "Outdoor kitchen with marble counters, refrigerator and grill beside the pool at dusk",
+    id: "evening-aframe",
+    src: "/resort/evening-aframe.jpg",
+    alt: "Lit A-frame villa and pool swings at dusk",
+    category: "evening",
+    caption: "The villa at dusk",
+  },
+  {
+    id: "outdoor-kitchen",
+    src: "/resort/outdoor-kitchen.jpg",
+    alt: "Outdoor kitchen with refrigerator, water dispenser, and a view of the pool at dusk",
     category: "evening",
     caption: "Outdoor kitchen at dusk",
   },
 ];
 
-// Convenience roles used across pages
-export const heroPhoto = poolWideDay.url;
-export const aboutPhoto = poolSignage.url;
-export const nightTourPhoto = swingsBarEvening.url;
-export const kitchenPhoto = outdoorKitchenEvening.url;
-export const loungePhoto = loftLiving.url;
-export const diningPhoto = diningLiving.url;
-export const aframePhoto = aframeInterior.url;
+export const heroPhoto = photos[0];
+export const signPhoto = photos.find((photo) => photo.id === "egg-chair")!;
+export const eveningPhotos = photos.filter((photo) => photo.category === "evening");
+
+export const rulePosters = {
+  houseRules: "/resort/house-rules.jpg",
+  quietHours: "/resort/quiet-hours.jpg",
+  poolRules: "/resort/pool-rules.jpg",
+};

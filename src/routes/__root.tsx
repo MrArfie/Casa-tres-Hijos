@@ -8,10 +8,10 @@ import {
   Scripts,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
+import { SiteShell } from "../components/site/site-shell";
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
   return (
@@ -38,9 +38,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -82,17 +79,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Casa Tres Hijos is an exclusive private resort in Pampanga with a turquoise swimming pool and A-frame villa — yours entirely for family gatherings, barkada bonding, and celebrations.",
+          "Casa Tres Hijos is a private pool resort on Daffodil Street, Pampanga. Your private escape. Your unforgettable moments.",
       },
       { name: "author", content: "Casa Tres Hijos" },
       { property: "og:title", content: "Casa Tres Hijos — Private Resort in Pampanga" },
       {
         property: "og:description",
         content:
-          "Your private escape. Your unforgettable moments. Exclusive-use private resort in Pampanga with pool, A-frame villa, and full amenities.",
+          "Your private escape. Your unforgettable moments. Private resort in Pampanga with a turquoise pool and A-frame villa.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "/resort/pool-day.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "/resort/pool-day.jpg" },
     ],
     links: [
       {
@@ -106,6 +105,41 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap",
       },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LodgingBusiness",
+          name: "Casa Tres Hijos",
+          description:
+            "Private resort in Pampanga with a turquoise swimming pool and A-frame villa, rented to one group at a time.",
+          image: "/resort/pool-day.jpg",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Daffodil Street",
+            addressRegion: "Pampanga",
+            addressCountry: "PH",
+          },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: 15.051722,
+            longitude: 120.665139,
+          },
+          sameAs: "https://www.facebook.com/profile.php?id=61591724522212",
+          amenityFeature: [
+            "Swimming pool",
+            "Outdoor kitchen and grill",
+            "Comfortable accommodation",
+            "Free Wi-Fi",
+            "Air-conditioned rooms",
+            "Netflix",
+            "Videoke",
+            "Towels",
+          ],
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -134,7 +168,9 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <SiteShell>
+        <Outlet />
+      </SiteShell>
     </QueryClientProvider>
   );
 }
